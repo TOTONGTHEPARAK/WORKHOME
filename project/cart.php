@@ -1,38 +1,90 @@
-<?php include "connect.php" ?>
+<?php
+session_start();
+
+// ตรวจสอบว่ามีตัวแปรเซสชัน "cart" หรือไม่
+if (!isset($_SESSION["cart"])) {
+    $_SESSION["cart"] = array(); // ถ้ายังไม่มี ให้สร้างอาร์เรย์ว่าง
+}
+
+// ตรวจสอบว่ามีการส่งค่า menu_No มาจากหน้าแสดงรายการเมนูหรือไม่
+if (isset($_GET["menu_No"])) {
+    $menu_No = $_GET["menu_No"];
+    // เพิ่ม menu_No ลงในรถเข็น (อาร์เรย์เซสชัน "cart")
+    $_SESSION["cart"][] = $menu_No;
+}
+
+
+// เชื่อมต่อกับฐานข้อมูล (อาจต้องปรับแต่งตามเครื่องหมายคำถามสำหรับการเชื่อมต่อ)
+include "connect.php";
+
+// สร้างคำสั่ง SQL เพื่อดึงข้อมูลเมนูจากฐานข้อมูล
+if (empty($_SESSION["cart"])) {
+    $sql = "SELECT * FROM menu WHERE 1=0"; // กำหนด SQL เป็นเงื่อนไขเท็จ
+} else {
+    $sql = "SELECT * FROM menu WHERE menu_No IN (" . implode(",", $_SESSION["cart"]) . ")";
+}
+
+$stmt = $pdo->prepare($sql);
+$stmt->execute();
+
+$stmt = $pdo->prepare($sql);
+$stmt->execute();
+
+// นับจำนวนแต่ละชนิดของสินค้าในรถเข็น
+$cartItemCount = array_count_values($_SESSION["cart"]);
+?>
+
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <title>Cart</title>
+    <meta charset="UTF-8">
+    <title>Shopping Cart</title>
+    <link rel="stylesheet" href="style1.css">
 </head>
 <body>
-    <h1>Shopping Cart</h1>
-    <?php
-        // ตรวจสอบว่า menu_No มีค่าใน URL
-        if(isset($_GET["menu_No"])) {
-            $menu_No = $_GET["menu_No"];
-            
-            // แปลงค่าที่รับมาเป็นอาร์เรย์
-            $menu_NoArray = explode(',', $menu_No);
+    <div class="wrapper">
+        <div class="topnav">
+            <a href="#">Link</a>
+            <a href="frist.php">Link</a>
+            <a href="cart.php">Cart</a>
+        </div>
 
-            // ใช้ foreach เพื่อเรียกข้อมูลสำหรับแต่ละ menu_No
-            foreach ($menu_NoArray as $menuNo) {
-                $stmt = $pdo->prepare("SELECT * FROM menu WHERE menu_No = ?");
-                $stmt->bindParam(1, $menuNo);
-                $stmt->execute();
-                $row = $stmt->fetch();
+        <div class="content">
+            <h1>Shopping Cart</h1>
+            <?php if (!empty($cartItemCount)): ?>
+                <table>
+                    <tr>
+                        <th>Menu No</th>
+                        <th>Menu Name</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Action</th> <!-- เพิ่มคอลัมน์ Action สำหรับปุ่มลบ -->
+                    </tr>
+                    <?php while ($row = $stmt->fetch()): ?>
+                        <tr>
+                            <td><?= $row["menu_No"] ?></td>
+                            <td><?= $row["menu_Name"] ?></td>
+                            <td><?= $row["price"] * $cartItemCount[$row["menu_No"]] ?></td>
+                            <td><?= $cartItemCount[$row["menu_No"]] ?></td>
+                            <td>
+                                <a href="remove_from_cart.php?menu_No=<?= $row["menu_No"] ?>">ลบ</a>
+                                <a href="add_from_cart.php?menu_No=<?= $row["menu_No"] ?>">เพิ่ม</a>
+                            </td>
+                        </tr>
+                    <?php endwhile; ?>
+                </table>
+                
 
-                // แสดงข้อมูล
-                echo "menu_No: " . $row["menu_No"] . "<br>";
-                echo "menu_Name: " . $row["menu_Name"] . "<br>";
-                echo "price: " . $row["price"] . "<br>";
-            }
-        } else {
-            // กรณีที่ไม่มี menu_No ใน URL
-            echo "ไม่มีข้อมูลในรายการ";
-        }
-    ?>
+            <?php else: ?>
+                <p>Your cart is empty.</p>
+            <?php endif; ?>
+        </div>
 
+
+        <div class="footer">
+            <div>Footer</div>    
+        </div>
+    </div>
 </body>
 </html>
