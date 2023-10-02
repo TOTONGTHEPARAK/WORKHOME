@@ -20,7 +20,7 @@ $stmt->execute();
 <body>
     <div class="wrapper">
         <div class="topnav">
-            <a href="#">Link</a>
+            <a href="showquery.php">Link</a>
             <a href="#">Link</a>
             <a href="cart.php">Cart</a>
         </div>

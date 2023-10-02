@@ -27,9 +27,6 @@ if (empty($_SESSION["cart"])) {
 $stmt = $pdo->prepare($sql);
 $stmt->execute();
 
-$stmt = $pdo->prepare($sql);
-$stmt->execute();
-
 // นับจำนวนแต่ละชนิดของสินค้าในรถเข็น
 $cartItemCount = array_count_values($_SESSION["cart"]);
 ?>
@@ -45,7 +42,7 @@ $cartItemCount = array_count_values($_SESSION["cart"]);
 <body>
     <div class="wrapper">
         <div class="topnav">
-            <a href="#">Link</a>
+            <a href="add_to_sql.php">Link</a>
             <a href="frist.php">Link</a>
             <a href="cart.php">Cart</a>
         </div>
