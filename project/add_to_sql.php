@@ -71,14 +71,14 @@ foreach ($_SESSION["cart"] as $cartItem) {
         $result += $row["price"];
     }
 }
-
+//insert ข้อมูลเข้าตาราง bill
 $addto = $pdo->prepare("INSERT INTO bill VALUES (NULL, :result, current_timestamp());");
 $addto->bindParam(':result', $result);
 $addto->execute();
 
 $empid = "1000";
 $making_detail = '';
-
+//insert ข้อมูลเข้าตาราง makings
 for($k=0;$k<= $maxIndex;$k++){
     $addmaking = $pdo->prepare("INSERT INTO makings VALUES (NULL,:making_detail,:emp_Id,:bill_Id,:manu_No)");
     $addmaking->bindParam(':making_detail',$making_detail);
@@ -87,9 +87,9 @@ for($k=0;$k<= $maxIndex;$k++){
     $addmaking->bindParam(':manu_No',$_SESSION["cart"][$k]);
     $addmaking->execute();
 }
-
+//insert ข้อมูลเข้า sql เสร็จแล้วทำ cart ให้เป็นค่าว่าง
 $_SESSION["cart"] = array();
-
+//ไปหน้า frist.php
 header("Location: frist.php");
 exit();
 

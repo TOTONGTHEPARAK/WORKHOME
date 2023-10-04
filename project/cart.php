@@ -42,7 +42,7 @@ $cartItemCount = array_count_values($_SESSION["cart"]);
 <body>
     <div class="wrapper">
         <div class="topnav">
-            <a href="add_to_sql.php">Link</a>
+            <a href="showquery.php">Link</a>
             <a href="frist.php">Link</a>
             <a href="cart.php">Cart</a>
         </div>
