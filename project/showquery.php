@@ -16,7 +16,7 @@
     <?php
     $stmt = $pdo->prepare("SELECT menu.menu_Name,COUNT(menu.menu_Name) FROM menu,makings WHERE makings.menu_No = menu.menu_No GROUP BY menu_Name ORDER BY COUNT(menu.menu_Name) DESC LIMIT 3;");
     $stmt->execute();
-    $stmt2 = $pdo->prepare("SELECT menu.menu_Name,bill.bill_Id,bill.bill_result,bill.bill_Time FROM bill,makings,menu WHERE bill.bill_Time BETWEEN '16:00:00' AND '22:00:00' AND bill.bill_Id = makings.bill_Id AND makings.menu_No = menu.menu_No");
+    $stmt2 = $pdo->prepare("SELECT menu.menu_Name,bill.bill_Id,bill.bill_result,bill.bill_Date FROM bill,makings,menu WHERE bill.bill_Date BETWEEN '2023-00-00 16:00:00' AND '2024-00-00 22:00:00' AND bill.bill_Id = makings.bill_Id AND makings.menu_No = menu.menu_No");
     $stmt2->execute();
     $stmt3 = $pdo->prepare("SELECT Month(bill_Date),SUM(bill.bill_result) FROM bill WHERE bill.bill_Date LIKE '2023-10%'");
     $stmt3->execute();
@@ -50,7 +50,7 @@
             $name2[$l] = $row["menu_Name"];
             $billid[$l] = $row["bill_Id"];
             $billresult[$l] = $row["bill_result"];
-            $billtime[$l] = $row["bill_Time"];
+            $billtime[$l] = $row["bill_Date"];
             $l++;
         ?>
     <?php endwhile; ?>

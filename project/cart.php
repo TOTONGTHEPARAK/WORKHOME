@@ -71,7 +71,7 @@ $cartItemCount = array_count_values($_SESSION["cart"]);
                         </tr>
                     <?php endwhile; ?>
                 </table>
-                
+                <a href="add_to_sql.php" class="confirm-button">ยืนยันการซื้อสินค้า</a>
 
             <?php else: ?>
                 <p>Your cart is empty.</p>

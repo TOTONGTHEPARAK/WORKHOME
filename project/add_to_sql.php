@@ -23,10 +23,20 @@ $stmt2 = $pdo->prepare("SELECT MAX(bill_Id) FROM bill");
 $stmt2->execute();
 $row = $stmt2->fetch();
 
+$maxmenu = $pdo->prepare("SELECT MAX(menu_No) FROM menu");
+$maxmenu->execute();
+$row3 = $maxmenu->fetch();
+
+
+$stmt3 = $pdo->prepare("SELECT menu.menu_No,menu.price FROM menu");
+$stmt3->execute();
+$row2 = $stmt3->fetch();
 
 // แสดงค่า session "cart"
 $cart = $_SESSION["cart"];
 $maxIndex = max(array_keys($cart));
+$maxid = $row3["MAX(menu_No)"];
+$maxbill = $row["MAX(bill_Id)"];
 
 // สร้างตัวแปรใหม่เพื่อจัดเรียงค่าใน session "cart"
 $newCart = array();
@@ -41,40 +51,48 @@ for ($x = 0; $x <= $maxIndex; $x++) {
         }
     }
 }
-
 // กำหนด session "cart" ใหม่
 $_SESSION["cart"] = $newCart;
 
-// แสดงค่า session "cart" ใหม่
-echo "รายการสินค้าในตะกร้า: ";
-print_r($row["MAX(bill_Id)"]);
-print_r($_SESSION["cart"]);
+
+$result = 0;
+
+// วนลูปเพื่อคำนวณราคารวมของสินค้าใน session "cart"
+foreach ($_SESSION["cart"] as $cartItem) {
+    // ค้นหาข้อมูลสินค้าในตาราง menu โดยใช้ menu_No จาก session "cart"
+    $sql = "SELECT price FROM menu WHERE menu_No = ?";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([$cartItem]);
+    $row = $stmt->fetch();
+
+    // หากพบข้อมูลสินค้า
+    if ($row) {
+        //result เก็บค่าราคารวมของบิล
+        $result += $row["price"];
+    }
+}
+
+$addto = $pdo->prepare("INSERT INTO bill VALUES (NULL, :result, current_timestamp());");
+$addto->bindParam(':result', $result);
+$addto->execute();
+
+$empid = "1000";
+$making_detail = '';
+
+for($k=0;$k<= $maxIndex;$k++){
+    $addmaking = $pdo->prepare("INSERT INTO makings VALUES (NULL,:making_detail,:emp_Id,:bill_Id,:manu_No)");
+    $addmaking->bindParam(':making_detail',$making_detail);
+    $addmaking->bindParam(':emp_Id',$empid);
+    $addmaking->bindParam(':bill_Id',$maxbill);
+    $addmaking->bindParam(':manu_No',$_SESSION["cart"][$k]);
+    $addmaking->execute();
+}
+
+$_SESSION["cart"] = array();
+
+header("Location: frist.php");
+exit();
+
 
 ?>
 
-?>
-
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Shopping Cart</title>
-    <link rel="stylesheet" href="style1.css">
-</head>
-<body>
-    <div class="wrapper">
-        <div class="topnav">
-            <a href="add_to_sql.php">Link</a>
-            <a href="frist.php">Link</a>
-            <a href="cart.php">Cart</a>
-        </div>
-        <div class="content">
-            <h1>Shopping Cart</h1>
-        </div>
-        <div class="footer">
-            <div>Footer</div>    
-        </div>
-    </div>
-</body>
-</html>
