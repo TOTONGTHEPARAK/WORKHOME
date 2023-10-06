@@ -37,7 +37,7 @@ $cartItemCount = array_count_values($_SESSION["cart"]);
 <head>
     <meta charset="UTF-8">
     <title>Shopping Cart</title>
-    <link rel="stylesheet" href="style1.css">
+    <link rel="stylesheet" href="cart-style.css">
 </head>
 <body>
     <div class="wrapper">

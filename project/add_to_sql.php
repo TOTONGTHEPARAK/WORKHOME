@@ -76,7 +76,8 @@ $addto = $pdo->prepare("INSERT INTO bill VALUES (NULL, :result, current_timestam
 $addto->bindParam(':result', $result);
 $addto->execute();
 
-$empid = "1000";
+
+$empid = $_COOKIE["empid"];
 $making_detail = '';
 //insert ข้อมูลเข้าตาราง makings
 for($k=0;$k<= $maxIndex;$k++){

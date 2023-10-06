@@ -1,26 +1,44 @@
 * {
+    font-family: 'IBM Plex Sans Thai', sans-serif;
+    font-family: 'Lato', sans-serif;
+    font-family: 'Open Sans', sans-serif;
+    font-family: 'Prompt', sans-serif;
+}
+* {
     margin: 0;
     padding: 0;
+    
 }
-
-body form {
-    width: 30%;
-    margin: 50px auto 0px;
-    color: white;
-    background: rgb(54, 54, 54);
-    text-align: center;
-    border: 1px solid rgba(0, 0, 0, 0);
-    border-bottom: none;
+input#serch-name{
+    font-size: 15px;
+    color: #f1f1f1;
+    border: white;
+}
+#serch-name{
     border-radius: 10px;
+    border: 1px solid white;
+    width: 200px;
+    height: 30px;
+    padding-left: 10px;
 }
-
-form {
-    width: 30%;
-    margin: 0 auto;
-    padding: 30px;
-    border: 1px solid black;
-    background-color: white;
-    border-radius: 0px 0px 10px 10px;
+form.serch-box{
+    background-color: #444645;
+    
+}
+.serch-box{
+    text-align: right;
+   
+    padding-bottom: 15px;
+    
+}
+.serch-box input{
+    margin-right: 10px;
+    
+    
+    
+}
+.serch-box button {
+    margin-right: 20px;
 }
 
 .input-login {
@@ -37,34 +55,46 @@ form {
 
 body {
     margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
+}
+  
+#pricetag{
+    font-size: 20px;
+}
+#nametag{
+    font-size: 27px;
+   
+}
+.topnav {
+    overflow: hidden;
+    font-weight: bold;
+    font-size: 20px;
 }
   
 
-.topnav {
-    overflow: hidden;
-    background-color: #333;
-}
-  
 .topnav a {
     float: left;
     display: block;
-    color: #f2f2f2;
+    color: black;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
+    
 }
   
   
 .topnav a:hover {
-    background-color: #ddd;
-    color: black;
+    border-bottom: 1px solid #006142;
+    padding-bottom: 5px; 
+    color: #006142;
+   
 }
-  
+
+
 .content {
-    background-color: #ddd;
+     background-color: #006142;
     padding: 10px;
     height: 200px; /* Should be removed. Only for demonstration */
+   
 }
   
 .footer {
@@ -84,19 +114,19 @@ body {
 .content {
     flex: 1;
     display: flex;
-    flex-wrap: wrap; 
-    justify-content: space-between; 
+    flex-wrap: wrap; /* ใช้ flex-wrap เพื่อให้แสดงเมนูในแนวนอนและขึ้นรายการใหม่เมื่อครบ 3 รายการ */
+    justify-content: space-between; /* ใช้ justify-content เพื่อกระจายเมนูให้เต็มแถว */
 }
 
 .menu {
     border: 1px solid #ccc;
     padding: 10px;
     margin: 10px;
-    
-    background-color: #f8f8f8;
+    background-color: white;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     border-radius: 5px;
     transition: transform 0.2s;
+    text-align: center;
 }
 
 .menu:hover {
@@ -110,11 +140,7 @@ body {
     margin: 0 auto; /* จัดตำแหน่งรูปภาพกลางแนวนอน */
 }
 
-.menu hr {
-    border-top: 1px solid #ccc;
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
+
 
 /* เพิ่มลักษณะขอบแบบครอบรอบ */
 .menu h3 {
@@ -136,20 +162,18 @@ body {
     text-align: center; /* จัดให้เนื้อหาภายใน container อยู่ตรงกลาง */
 }
 
-.center-button {
+#center-button {
     padding: 10px 20px; /* ปรับขนาดของปุ่ม */
-    background-color: #007bff; /* สีพื้นหลังของปุ่ม */
-    color: white; /* สีข้อความในปุ่ม */
-    border: none; /* ลบเส้นขอบ */
-    border-radius: 5px; /* ทำให้มีมุมโค้ง */
-    font-size: 16px; /* ขนาดตัวอักษร */
+    color: #006142;
     cursor: pointer; /* เปลี่ยนเป็น pointer เมื่อเมาส์ชี้ที่ปุ่ม */
     transition: background-color 0.3s; /* เพิ่มอนิเมชันเมื่อเมาส์ hover ที่ปุ่ม */
 }
 
-.center-button:hover {
-    background-color: #0056b3; /* สีพื้นหลังของปุ่มเมื่อ hover */
+#center-button:hover {
+    opacity: 0.3; /* สีพื้นหลังของปุ่มเมื่อ hover */
 }
+
+
 
 @media (max-width: 700px) {
     .menu {
@@ -174,60 +198,7 @@ body {
         width: calc(23% - 20px); /* For medium screens, display two menu items per row */
     }
 }
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-}
 
-th, td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: left;
-}
 
-th {
-    background-color: #f2f2f2;
-}
 
-tr:nth-child(even) {
-    background-color: #f2f2f2;
-}
-
-tr:hover {
-    background-color: #ddd;
-}
-
-td a {
-    text-decoration: none;
-    color: red;
-}
-td a {
-    text-decoration: none;
-    color: red;
-    cursor: pointer;
-}
-
-td a:hover {
-    text-decoration: underline;
-}
-p {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-
-}
-.confirm-button {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 5px;
-}
-
-.confirm-button:hover {
-    background-color: #0056b3;
-}
 

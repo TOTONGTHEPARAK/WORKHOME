@@ -28,12 +28,8 @@
 
     
     ?>
-    <!-- $stmt = $pdo->prepare("SELECT * FROM employee WHERE emp_Id = ? AND emp_Phone = ?");
-    $stmt->bindParam(1, $_GET["emp_Id"]);
-    $stmt->bindParam(2, $_GET["emp_Phone"]);
-    $stmt->execute();
-    $row = $stmt->fetch();
-    <?="ชื่อสมาชิก:" . $row["emp_Name"]?><br><?="โทร:" . $row["emp_Phone"]?><br><?="อีเมล์:" . $row["emp_DOB"]?><br><hr> -->
+    
+    <?="ชื่อสมาชิก:" . $row["emp_Name"]?><br><?="โทร:" . $row["emp_Phone"]?><br><?="อีเมล์:" . $row["emp_DOB"]?><br><hr> 
 
 </body>
 </html>
