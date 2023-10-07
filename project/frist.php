@@ -12,7 +12,9 @@ $stmt->execute();
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai&family=Lato:ital,wght@1,300&family=Open+Sans:wght@300&family=Prompt:wght@300&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        
         <script>
+            
             var idnum = {}; // ต้องใช้ var หรือ let ในการประกาศตัวแปร
             var count = 0; 
             function addToCart(menuNo) {
@@ -41,16 +43,15 @@ $stmt->execute();
 <body>
     
     <div class="wrapper">
-        <div class="topnav">
-            
-            <a href="#">Link</a>
-            <a href="#">Link</a>
-            <a href="cart.php">cart</a>
-            <a href="login_emp.php">emp</a>
-            <a href="logout.php">logout</a>
-          
-            <!-- <button onclick="pushtocart()">PUSH</button> -->
-             <form  class="serch-box">
+        <div class="topnav">     
+            <a href="#"><img src="./image/logo.png" height="30px" ></a>
+            <a class = "linkbutt" style="color:#FBB813;" href="frist.php">Shop</a>
+            <a class = "linkbutt" href="login_emp.php">emp</a>
+            <a class = "linkbutt" href="logout.php">logout</a>
+            <a class = "linkbutt" href="showquery.php">Query</a>
+            <a class = "cartbutt" href="cart.php"><i class="fa-solid fa-cart-shopping fa-xl"></i></a>             
+        </div>
+            <form  class="serch-box">
                 <br><input type="text" id="serch-name" name="serch-name" placeholder="  ค้นหาเมนู">
                 
                  
@@ -59,8 +60,6 @@ $stmt->execute();
                 </button>
          
             </form>
-        </div>
-           
             <?php
                 $stmt = $pdo->prepare("SELECT * FROM menu WHERE menu_Name LIKE ?");
                 if (!empty($_GET)) // ถ ้ามีค่าที่สงมาจากฟอร์ม ่
@@ -83,7 +82,7 @@ $stmt->execute();
                     </p>
                     <br>
                     <i id="center-button" class="fa-solid fa-cart-plus fa-2xl" name="bt-cart" onclick="addToCart(<?php echo $row["menu_No"]; ?>)"></i> <br><br>
-                    <br><br><br><a href="first.php"> <i class="fa-solid fa-arrow-left fa-xl" style="color: #006142;"></i></a>
+                    <br><br><br><a href="frist.php"> <i class="fa-solid fa-arrow-left fa-xl" style="color: #006142;"></i></a>
                     <br><br>
                 </div>
             <?php endwhile; ?>
@@ -115,7 +114,7 @@ $stmt->execute();
         </div>
         
         <div class="footer">
-            <p>Footer</p>
+            
         </div>
     </div>
 </body>

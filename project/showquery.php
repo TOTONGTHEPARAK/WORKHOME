@@ -2,14 +2,21 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <link rel="stylesheet" href="style1.css">
+        <link rel="stylesheet" href="query.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai&family=Lato:ital,wght@1,300&family=Open+Sans:wght@300&family=Prompt:wght@300&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     </head>
 <body>
     <div class="wrapper">
-        <div class="topnav">
-            <a href="add_to_sql.php">Link</a>
-            <a href="frist.php">Link</a>
-            <a href="cart.php">Cart</a>
+    <div class="topnav">     
+            <a href="#"><img src="./image/logo.png" height="30px" ></a>
+            <a class = "linkbutt" style="color:#FBB813;" href="frist.php">Shop</a>
+            <a class = "linkbutt" href="login_emp.php">emp</a>
+            <a class = "linkbutt" href="logout.php">logout</a>
+            <a class = "linkbutt" href="showquery.php">Query</a>
+            <a class = "cartbutt" href="cart.php"><i class="fa-solid fa-cart-shopping fa-xl " style="color: #00EDA2;"></i></a>             
         </div>
     </div>
     
@@ -20,7 +27,7 @@
     $stmt2->execute();
     $i = 0;
     ?>
-    จงแสดง 3 อันดับสินค้าที่ขายดีที่สุด
+    <div class="q1">จงแสดง 3 อันดับสินค้าที่ขายดีที่สุด</div>
     <?php while ($row = $stmt->fetch()): ?>
         <?php 
             $name[$i] = $row["menu_Name"];
@@ -36,13 +43,13 @@
             <th>จำนวน</th>
         </tr>";
     for ($j = 0; $j < $i; $j++) {
-        echo "<tr><td>" . $name[$j] . "</td><td>" . $result[$j];
+        echo "<tr><td>" . $name[$j] . "</td><td>" . $result[$j] . "</td></tr>";
     }
     echo "
         </table>
     ";
     ?>
-    จงแสดงรายการที่ขายในช่วงเวลา 16.00-22.00 น.
+    <div class="q1">จงแสดงรายการที่ขายในช่วงเวลา 16.00-22.00 น.</div>
     <?php $l = 0; ?>
     <?php while ($row = $stmt2->fetch()): ?>
         <?php 
@@ -70,7 +77,7 @@
     ";
     ?>
     
-    จงแสดงจำนวนยอดขายทั้งหมดของเดือน
+    <div class="q1">จงแสดงจำนวนยอดขายทั้งหมดของเดือน</div>
     <form method="POST" action="">
         <label for="month">เลือกเดือน:</label>
         <select name="month" id="month">
@@ -125,6 +132,6 @@
         </table>
     ";
     ?>
+    <br><br><br>
 </body>
 </html>
-

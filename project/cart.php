@@ -42,13 +42,13 @@ $cartItemCount = array_count_values($_SESSION["cart"]);
 <body>
     <div class="wrapper">
         <div class="topnav">
-            <a href="showquery.php">Link</a>
-            <a href="frist.php">Link</a>
+            <a href="frist.php" style="color:#FBB813">Shop</a>
+            <a href="showquery.php">Query</a>
             <a href="cart.php">Cart</a>
         </div>
-
+        <img src="./image/topcart.png" height="300">
         <div class="content">
-            <h1>Shopping Cart</h1>
+        
             <?php if (!empty($cartItemCount)): ?>
                 <table>
                     <tr>
@@ -65,13 +65,13 @@ $cartItemCount = array_count_values($_SESSION["cart"]);
                             <td><?= $row["price"] * $cartItemCount[$row["menu_No"]] ?></td>
                             <td><?= $cartItemCount[$row["menu_No"]] ?></td>
                             <td>
-                                <a href="remove_from_cart.php?menu_No=<?= $row["menu_No"] ?>">ลบ</a>
+                                <a href="remove_from_cart.php?menu_No=<?= $row["menu_No"] ?>">ลบ</a>&nbsp;
                                 <a href="add_from_cart.php?menu_No=<?= $row["menu_No"] ?>">เพิ่ม</a>
                             </td>
                         </tr>
                     <?php endwhile; ?>
                 </table>
-                <a href="add_to_sql.php" class="confirm-button">ยืนยันการซื้อสินค้า</a>
+                <a href="add_to_sql.php" ><input type="submit" class="confirm-button" value="ยืนยันการซื้อสินค้า"></a>
 
             <?php else: ?>
                 <p>Your cart is empty.</p>

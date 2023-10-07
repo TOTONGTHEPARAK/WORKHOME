@@ -11,7 +11,7 @@
 }
 input#serch-name{
     font-size: 15px;
-    color: #f1f1f1;
+    color: #000000;
     border: white;
 }
 #serch-name{
@@ -22,8 +22,8 @@ input#serch-name{
     padding-left: 10px;
 }
 form.serch-box{
-    background-color: #444645;
-    
+    background-color: #0e251a;
+  
 }
 .serch-box{
     text-align: right;
@@ -33,12 +33,18 @@ form.serch-box{
 }
 .serch-box input{
     margin-right: 10px;
+   
     
-    
+
     
 }
+.serch-box button i{
+     color: #00EDA2;
+ }
+
 .serch-box button {
     margin-right: 20px;
+    
 }
 
 .input-login {
@@ -64,37 +70,58 @@ body {
     font-size: 27px;
    
 }
+
 .topnav {
     overflow: hidden;
     font-weight: bold;
     font-size: 20px;
+    background-color: #004731;
+    
 }
   
-
-.topnav a {
+.topnav button i{
+   color: white;
+}
+.topnav .linkbutt{
     float: left;
     display: block;
-    color: black;
+    color: #ffffff;;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
     
 }
+.topnav .cartbutt {
+    float: right;
+    color: #00EDA2;
+    text-align: center;
+    padding: 27px 16px;
+    
+    
+}
+
   
-  
-.topnav a:hover {
-    border-bottom: 1px solid #006142;
-    padding-bottom: 5px; 
-    color: #006142;
+.topnav .linkbutt:hover {
+    border-bottom: 1px solid #ffffff;
+    padding-bottom: 13px; 
+    color: #FBB813;
    
 }
 
-
+.topnav a {
+    float: left;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    
+}
 .content {
-     background-color: #006142;
+     
     padding: 10px;
     height: 200px; /* Should be removed. Only for demonstration */
-   
+    background-color: #0e251a;
 }
   
 .footer {
@@ -103,7 +130,6 @@ body {
     text-align: center;
 
 }
-
 /* style.css */
 .wrapper {
     display: flex;
@@ -167,14 +193,18 @@ body {
     color: #006142;
     cursor: pointer; /* เปลี่ยนเป็น pointer เมื่อเมาส์ชี้ที่ปุ่ม */
     transition: background-color 0.3s; /* เพิ่มอนิเมชันเมื่อเมาส์ hover ที่ปุ่ม */
+    
 }
 
 #center-button:hover {
-    opacity: 0.3; /* สีพื้นหลังของปุ่มเมื่อ hover */
+    opacity: 0.7; /* สีพื้นหลังของปุ่มเมื่อ hover */
 }
-
-
-
+#center-button:active{
+    opacity: 0.1; /* สีพื้นหลังของปุ่มเมื่อ hover */
+}
+.footer{
+    background-color: #006142;
+}
 @media (max-width: 700px) {
     .menu {
         width: calc(100% - 20px); /* For smaller screens, display one menu item per row */

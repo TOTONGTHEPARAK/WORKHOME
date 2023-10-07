@@ -29,6 +29,8 @@ form {
     border-radius: 0px 0px 10px 10px;
 }
 
+
+
 .input-login {
     margin: 10px 0px 10px 0px;
 }
@@ -45,19 +47,21 @@ body {
     margin: 0;
     
 }
+
+
   
 
 .topnav {
    overflow: hidden;
-    background-color: white;
     font-weight: bold;
     font-size: 20px;
+    background-color: #3D533B;
 }
   
 .topnav a {
      float: left;
     display: block;
-    color: black;
+    color: white;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
@@ -65,22 +69,25 @@ body {
   
   
 .topnav a:hover {
-    border-bottom: 1px solid #006142;
+    border-bottom: 1px solid ;
     padding-bottom: 5px; 
-    color: #006142;
+    color: #FBB813;
 }
   
 .content {
     background-color: white;
-    padding: 10px;
     height: 200px; /* Should be removed. Only for demonstration */
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap; /* ใช้ flex-wrap เพื่อให้แสดงเมนูในแนวนอนและขึ้นรายการใหม่เมื่อครบ 3 รายการ */
+    justify-content: space-between; /* ใช้ justify-content เพื่อกระจายเมนูให้เต็มแถว */
 }
   
 .footer {
-    background-color: #f1f1f1;
+    background-color: #000000;
     padding: 10px;
     text-align: center;
-
+    color:white;
 }
 
 /* style.css */
@@ -90,12 +97,7 @@ body {
     min-height: 100vh; /* ทำให้ wrapper มีความสูงเท่ากับหน้าจอ */
 }
 
-.content {
-    flex: 1;
-    display: flex;
-    flex-wrap: wrap; /* ใช้ flex-wrap เพื่อให้แสดงเมนูในแนวนอนและขึ้นรายการใหม่เมื่อครบ 3 รายการ */
-    justify-content: space-between; /* ใช้ justify-content เพื่อกระจายเมนูให้เต็มแถว */
-}
+
 
 .menu {
     border: 1px solid #ccc;
@@ -185,33 +187,37 @@ body {
 }
 /* เพิ่ม margin-top เพื่อขยับตารางขึ้นไปยัง Navbar */
 table {
-    margin-top: -20px; /* ปรับค่าตามที่เหมาะสม */
+     /* ปรับค่าตามที่เหมาะสม */
     border-collapse: collapse;
    width: 100%;;
    
 }
 
+
 table, th, td {
-   
-   
-    margin-top: 20px;
+    margin-top: 0px;
+    border: 0.1rem #c9b58d solid;
 }
 
 th, td {
     padding: 10px;
     text-align: center;
-    background-color: white;
+    background-color: #FFEBC6;
 }
 
 th {
-    background-color: #006142;
+    background-color: #b9880b;
     color: white;
 }
-
-tr:nth-child(even) {
-    background-color: rgb(247, 247, 247);
+.confirm-button{
+    background-color: #0a794e;
+    font-size: 20px;
+    margin: 10px;
+    color:white;
+    padding:5px 10px;
+    border-radius: 10px;
 }
 
-tr:hover {
-    background-color: rgb(255, 255, 255);
+.confirm-button:hover{
+    background-color: #0a794fa2;
 }
