@@ -85,11 +85,10 @@ body {
 .topnav .linkbutt{
     float: left;
     display: block;
-    color: #ffffff;;
+    color: #ffffff;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
-    
 }
 .topnav .cartbutt {
     float: right;
@@ -117,13 +116,12 @@ body {
     text-decoration: none;
     
 }
-.content {
-     
+
+.content { 
     padding: 10px;
     height: 200px; /* Should be removed. Only for demonstration */
     background-color: #0e251a;
 }
-  
 .footer {
     background-color: #f1f1f1;
     padding: 10px;
@@ -207,28 +205,40 @@ body {
 }
 @media (max-width: 700px) {
     .menu {
-        width: calc(100% - 20px); /* For smaller screens, display one menu item per row */
+        width: calc(100% - 20px);
     }
 }
 
 @media (min-width: 701px){
     .menu {
-        width: calc(46% - 20px); /* For medium screens, display two menu items per row */
+        width: calc(46% - 20px); 
     }
 }
 
 @media (min-width: 1101px){
     .menu {
-        width: calc(30% - 20px); /* For medium screens, display two menu items per row */
+        width: calc(30% - 20px);
     }
 }
 
 @media (min-width: 1440px){
     .menu {
-        width: calc(23% - 20px); /* For medium screens, display two menu items per row */
+        width: calc(23% - 20px); 
     }
 }
 
+.dark-theme {
+    background-color: #333; /* เปลี่ยนสีพื้นหลังเป็นสีมืด */
+    color: #fff; /* เปลี่ยนสีข้อความเป็นสีขาว */
+}
 
-
+.button-color{
+    float: left;
+    display: block;
+    color: #000000;
+    text-align: center;
+    padding: 7px 10px;
+    text-decoration: none;
+    margin-top: 10px;
+}
 

@@ -14,12 +14,12 @@ if (isset($_GET["menu_No"])) {
 }
 
 
-// เชื่อมต่อกับฐานข้อมูล (อาจต้องปรับแต่งตามเครื่องหมายคำถามสำหรับการเชื่อมต่อ)
+// เชื่อมต่อกับฐานข้อมูล
 include "connect.php";
 
 // สร้างคำสั่ง SQL เพื่อดึงข้อมูลเมนูจากฐานข้อมูล
 if (empty($_SESSION["cart"])) {
-    $sql = "SELECT * FROM menu WHERE 1=0"; // กำหนด SQL เป็นเงื่อนไขเท็จ
+    $sql = "SELECT * FROM menu WHERE 1=0"; 
 } else {
     $sql = "SELECT * FROM menu WHERE menu_No IN (" . implode(",", $_SESSION["cart"]) . ")";
 }
@@ -56,7 +56,7 @@ $cartItemCount = array_count_values($_SESSION["cart"]);
                         <th>Menu Name</th>
                         <th>Price</th>
                         <th>Quantity</th>
-                        <th>Action</th> <!-- เพิ่มคอลัมน์ Action สำหรับปุ่มลบ -->
+                        <th>Action</th>
                     </tr>
                     <?php while ($row = $stmt->fetch()): ?>
                         <tr>
@@ -76,11 +76,6 @@ $cartItemCount = array_count_values($_SESSION["cart"]);
             <?php else: ?>
                 <p>Your cart is empty.</p>
             <?php endif; ?>
-        </div>
-
-
-        <div class="footer">
-            <div>Footer</div>    
         </div>
     </div>
 </body>

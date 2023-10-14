@@ -14,8 +14,7 @@ $stmt->execute();
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         
         <script>
-            
-            var idnum = {}; // ต้องใช้ var หรือ let ในการประกาศตัวแปร
+            var idnum = {};
             var count = 0; 
             function addToCart(menuNo) {
                 var xhr = new XMLHttpRequest();
@@ -29,29 +28,31 @@ $stmt->execute();
                 window.location.href = "cart.php?menu_No=" + idnum;
             }
             
-           
-            </script>
-            <script>
-               function addToCart(menuNo) {
-        var xhr = new XMLHttpRequest();
-        xhr.open("GET", "cart.php?menu_No=" + menuNo, true);
-        xhr.send();
-    }
-            </script>
+            function changetheme() {
+                var content = document.getElementById("content");
+                var topnav = document.getElementById("topnav");
+                var serchbox = document.getElementById("serch-box");
+                content.style.background = "#526D82";
+                topnav.style.background = "#27374D";
+                serchbox.style.background = "#526D82";
+            }
+      
+        </script>
             
     </head>
 <body>
     
     <div class="wrapper">
-        <div class="topnav">     
+        <div class="topnav" id="topnav">   
             <a href="#"><img src="./image/logo.png" height="30px" ></a>
             <a class = "linkbutt" style="color:#FBB813;" href="frist.php">Shop</a>
-            <a class = "linkbutt" href="login_emp.php">emp</a>
             <a class = "linkbutt" href="logout.php">logout</a>
             <a class = "linkbutt" href="showquery.php">Query</a>
-            <a class = "cartbutt" href="cart.php"><i class="fa-solid fa-cart-shopping fa-xl"></i></a>             
+            <a class = "cartbutt" href="cart.php"><i class="fa-solid fa-cart-shopping fa-xl"></i></a>
+            <button class = "button-color" onclick="changetheme()">Dark</button>
+             
         </div>
-            <form  class="serch-box">
+            <form  class="serch-box" id="serch-box">
                 <br><input type="text" id="serch-name" name="serch-name" placeholder="  ค้นหาเมนู">
                 
                  
@@ -62,10 +63,10 @@ $stmt->execute();
             </form>
             <?php
                 $stmt = $pdo->prepare("SELECT * FROM menu WHERE menu_Name LIKE ?");
-                if (!empty($_GET)) // ถ ้ามีค่าที่สงมาจากฟอร์ม ่
-                $value = '%' . $_GET["serch-name"] . '%'; // ดึงค่าที่สงมาก าหนดให ้กับตัวแปรเงื่อนไข ่
-                $stmt->bindParam(1, $value); // ก าหนดชอตัวแปรเงื่อนไขที่จุดที่ก าหนด ื่ ? ไว ้
-                $stmt->execute(); // เริ่มค ้นหา
+                if (!empty($_GET)) // ถ้ามีค่าที่สงมาจากฟอร์ม
+                $value = '%' . $_GET["serch-name"] . '%'; // ดึงค่าที่สงมากำหนดให้กับตัวแปรเงื่อนไข
+                $stmt->bindParam(1, $value); // กำหนดชื่อตัวแปรเงื่อนไขที่จุดที่กำหนด? ไว ้
+                $stmt->execute(); // เริ่มค้นหา
                 
             
             ?>
@@ -86,16 +87,15 @@ $stmt->execute();
                     <br><br>
                 </div>
             <?php endwhile; ?>
-        <div class="content">
+        <div class="content" id="content">
           
             <?php
                 $stmt = $pdo->prepare("SELECT * FROM menu");
                 $stmt->execute(); // เริ่มค้นหา
             ?>
             <?php while ($row = $stmt->fetch()): ?>
-                <div class="menu">  
+                <div class="menu" id="menu">  
                     <img src='image/<?= $row["menu_Name"] ?>.jpg' >
-                    <!-- <?= "menu_No:" . $row["menu_No"] ?><br> -->
                     <p id="nametag">
                         <?= $row["menu_Name"]  ?><br>
                         
@@ -111,10 +111,6 @@ $stmt->execute();
                 </div>
                 </div>
             <?php endwhile; ?>
-        </div>
-        
-        <div class="footer">
-            
         </div>
     </div>
 </body>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 07, 2023 at 10:08 AM
+-- Generation Time: Oct 14, 2023 at 11:43 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.4
 
@@ -77,7 +77,9 @@ INSERT INTO `bill` (`bill_Id`, `bill_result`, `bill_Date`) VALUES
 (42, 85, '2023-10-06 12:41:51'),
 (43, 60, '2023-10-07 07:54:03'),
 (44, 90, '2023-10-07 07:54:26'),
-(45, 65, '2023-10-07 07:54:55');
+(45, 65, '2023-10-07 07:54:55'),
+(46, 105, '2023-10-11 07:28:05'),
+(47, 75, '2023-10-11 07:28:43');
 
 -- --------------------------------------------------------
 
@@ -161,7 +163,12 @@ INSERT INTO `makings` (`making_No`, `making_detail`, `emp_Id`, `bill_Id`, `menu_
 (38, '', 1000, 43, 7),
 (39, '', 1000, 43, 8),
 (40, '', 1000, 44, 9),
-(41, '', 1000, 44, 11);
+(41, '', 1000, 44, 11),
+(42, '', 1000, 45, 1),
+(43, '', 1000, 45, 3),
+(44, '', 1000, 45, 4),
+(45, '', 1000, 46, 6),
+(46, '', 1000, 46, 5);
 
 -- --------------------------------------------------------
 
@@ -243,7 +250,7 @@ ALTER TABLE `menu`
 -- AUTO_INCREMENT for table `bill`
 --
 ALTER TABLE `bill`
-  MODIFY `bill_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `bill_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- AUTO_INCREMENT for table `employee`
@@ -255,7 +262,7 @@ ALTER TABLE `employee`
 -- AUTO_INCREMENT for table `makings`
 --
 ALTER TABLE `makings`
-  MODIFY `making_No` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `making_No` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT for table `menu`

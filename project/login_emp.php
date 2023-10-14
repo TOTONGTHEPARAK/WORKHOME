@@ -10,7 +10,7 @@
         <form action="login_emp_sql.php" method="get">
         <div class="input-login">
             <p>ID : </p>
-            <input type="text" name="emp_Id"><br>
+            <input type="text" name="emp_Id" pattern="[0-9]{4}"><br>
             <input type="submit" class="loginbut" value="LOGIN" name="login_user" >
         </div>
     </form>

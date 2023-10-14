@@ -6,7 +6,7 @@ if (!isset($_SESSION["cart"])) {
     $_SESSION["cart"] = array(); // ถ้ายังไม่มี ให้สร้างอาร์เรย์ว่าง
 }
 
-// เชื่อมต่อกับฐานข้อมูล (อาจต้องปรับแต่งตามเครื่องหมายคำถามสำหรับการเชื่อมต่อ)
+// เชื่อมต่อกับฐานข้อมูล
 include "connect.php";
 
 // สร้างคำสั่ง SQL เพื่อดึงข้อมูลเมนูจากฐานข้อมูล
@@ -45,7 +45,6 @@ $count = 0;
 for ($x = 0; $x <= $maxIndex; $x++) {
     if (isset($_SESSION["cart"][$x])) {
         if ($_SESSION["cart"][$x] != 0) {
-            // เพิ่มสินค้าในตำแหน่งใหม่ใน $newCart
             $newCart[$count] = $_SESSION["cart"][$x];
             $count++;
         }
@@ -59,15 +58,12 @@ $result = 0;
 
 // วนลูปเพื่อคำนวณราคารวมของสินค้าใน session "cart"
 foreach ($_SESSION["cart"] as $cartItem) {
-    // ค้นหาข้อมูลสินค้าในตาราง menu โดยใช้ menu_No จาก session "cart"
     $sql = "SELECT price FROM menu WHERE menu_No = ?";
     $stmt = $pdo->prepare($sql);
     $stmt->execute([$cartItem]);
     $row = $stmt->fetch();
 
-    // หากพบข้อมูลสินค้า
     if ($row) {
-        //result เก็บค่าราคารวมของบิล
         $result += $row["price"];
     }
 }

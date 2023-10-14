@@ -5,7 +5,6 @@ session_start();
 // ตรวจสอบว่ามีการส่งค่า menu_No มาจากหน้าแสดงรายการเมนูหรือไม่
 if (isset($_GET["menu_No"])) {
     $menu_No = $_GET["menu_No"];
-    // เพิ่ม menu_No ลงในรถเข็น (อาร์เรย์เซสชัน "cart")
     $_SESSION["cart"][] = $menu_No;
 }
 

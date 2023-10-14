@@ -153,25 +153,25 @@ body {
 
 @media (max-width: 700px) {
     .menu {
-        width: calc(100% - 20px); /* For smaller screens, display one menu item per row */
+        width: calc(100% - 20px);
     }
 }
 
 @media (min-width: 701px){
     .menu {
-        width: calc(46% - 20px); /* For medium screens, display two menu items per row */
+        width: calc(46% - 20px);
     }
 }
 
 @media (min-width: 1101px){
     .menu {
-        width: calc(30% - 20px); /* For medium screens, display two menu items per row */
+        width: calc(30% - 20px);
     }
 }
 
 @media (min-width: 1440px){
     .menu {
-        width: calc(23% - 20px); /* For medium screens, display two menu items per row */
+        width: calc(23% - 20px);
     }
 }
 table {
