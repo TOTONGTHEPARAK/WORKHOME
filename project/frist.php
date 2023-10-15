@@ -44,7 +44,7 @@ $stmt->execute();
     
     <div class="wrapper">
         <div class="topnav" id="topnav">   
-            <a href="#"><img src="./image/logo.png" height="30px" ></a>
+            <a href="setting.php"><img src="./image/logo.png" height="30px" ></a>
             <a class = "linkbutt" style="color:#FBB813;" href="frist.php">Shop</a>
             <a class = "linkbutt" href="logout.php">logout</a>
             <a class = "linkbutt" href="showquery.php">Query</a>
