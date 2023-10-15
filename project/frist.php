@@ -1,9 +1,6 @@
 <?php
 include "connect.php";
-$stmt = $pdo->prepare("SELECT * FROM menu");
-$stmt->execute();
 ?>
-
 <html>
     <head>
         <meta charset="utf-8">
@@ -61,57 +58,47 @@ $stmt->execute();
                 </button>
          
             </form>
-            <?php
-                $stmt = $pdo->prepare("SELECT * FROM menu WHERE menu_Name LIKE ?");
-                if (!empty($_GET)) // ถ้ามีค่าที่สงมาจากฟอร์ม
-                $value = '%' . $_GET["serch-name"] . '%'; // ดึงค่าที่สงมากำหนดให้กับตัวแปรเงื่อนไข
-                $stmt->bindParam(1, $value); // กำหนดชื่อตัวแปรเงื่อนไขที่จุดที่กำหนด? ไว ้
-                $stmt->execute(); // เริ่มค้นหา
-                
-            
-            ?>
-            <?php while ($row = $stmt->fetch()) : ?>
-                <div style="padding: 15px; text-align: center">
-                
-                <img src='image/<?= $row["menu_Name"] ?>.jpg' >
-                    <p id="nametag">
-                        <?= $row["menu_Name"]  ?><br>
-                        
-                    </p>
-                    <p id="pricetag">
-                    <?= $row["price"] ." บาท   " ?>  
-                    </p>
-                    <br>
-                    <i id="center-button" class="fa-solid fa-cart-plus fa-2xl" name="bt-cart" onclick="addToCart(<?php echo $row["menu_No"]; ?>)"></i> <br><br>
-                    <br><br><br><a href="frist.php"> <i class="fa-solid fa-arrow-left fa-xl" style="color: #006142;"></i></a>
-                    <br><br>
-                </div>
-            <?php endwhile; ?>
         <div class="content" id="content">
           
             <?php
-                $stmt = $pdo->prepare("SELECT * FROM menu");
-                $stmt->execute(); // เริ่มค้นหา
+                $itemsPerPage = 10; // กำหนดจำนวนรายการที่จะแสดงในแต่ละหน้า
+                $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;                
+                $offset = ($page - 1) * $itemsPerPage;
+                $stmt = $pdo->prepare("SELECT * FROM menu LIMIT $offset, $itemsPerPage");
+                $stmt->execute();
             ?>
             <?php while ($row = $stmt->fetch()): ?>
-                <div class="menu" id="menu">  
-                    <img src='image/<?= $row["menu_Name"] ?>.jpg' >
-                    <p id="nametag">
-                        <?= $row["menu_Name"]  ?><br>
-                        
-                    </p>
-                    <p id="pricetag">
-                    <?= $row["price"] ." บาท   " ?>  
-                    </p>
-                    
-                    <div class="container">
-                  
+            <div class="menu" id="menu">  
+                <img src='image/<?= $row["menu_Name"] ?>.jpg'>
+                <p id="nametag">
+                    <?= $row["menu_Name"] ?><br>
+                </p>
+                <p id="pricetag">
+                    <?= $row["price"] . " บาท   " ?>
+                </p>
+                <div class="container">
                     <i id="center-button" class="fa-solid fa-cart-plus fa-2xl" name="bt-cart" onclick="addToCart(<?php echo $row["menu_No"]; ?>)"></i> <br><br>
-                       
                 </div>
-                </div>
-            <?php endwhile; ?>
+            </div>
+        <?php endwhile; ?>
         </div>
+        <div class="pagination">
+    <?php if ($page > 1): ?>
+        <a href="?page=<?= ($page - 1) ?>">หน้าก่อนหน้า</a>
+
+    <?php endif; ?>
+
+    <?php
+    $stmt->closeCursor(); // ปิดการค้นหาคิวรี่ก่อนหน้า
+    $stmt = $pdo->query("SELECT COUNT(*) FROM menu");
+    $totalItems = $stmt->fetchColumn();
+    $totalPages = ceil($totalItems / $itemsPerPage);
+
+    if ($page < $totalPages): ?>
+        <a href="?page=<?= ($page + 1) ?>">หน้าถัดไป</a>
+
+    <?php endif; ?>
+</div>
     </div>
 </body>
 </html>
